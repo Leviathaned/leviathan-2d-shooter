@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://qudh4pf04gwh"]
 
-[ext_resource type="Texture2D" uid="uid://dxa058771ih4l" path="res://Player/Shot/Sprites/shot.png" id="1_1yeg4"]
+[ext_resource type="Texture2D" uid="uid://c2ql7egfk6opm" path="res://Player/Shot/Sprites/shot.png" id="1_1yeg4"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_04gnu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkxiy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -20,7 +20,7 @@ height = 18.0
 [node name="Shot" type="Area2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_04gnu")
+sprite_frames = SubResource("SpriteFrames_lkxiy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.68, 1)
