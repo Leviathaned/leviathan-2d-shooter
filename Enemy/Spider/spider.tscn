@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ymb8cb7kukg"]
+
+[ext_resource type="Texture2D" uid="uid://dw3m7r6mm2bq" path="res://Enemy/Spider/Spider.png" id="1_yqd6d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8dw3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yqd6d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_284s6"]
+radius = 8.78637
+height = 28.9873
+
+[node name="Spider" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w8dw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -12)
+scale = Vector2(4.60204, 4.03166)
+shape = SubResource("CapsuleShape2D_284s6")
