@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://d36vdyoe8bp85"
-=======
-uid="uid://b0hg0cie0qux1"
->>>>>>> c610606407f8789e4ce7718c15b06cba3fd2d49a
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://b3rcrwoiygoru"
+path="res://.godot/imported/idle.png-2bfc905b9930f2e295e2f3b3b50ac2bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://Player/Sprites/idle.png"
+dest_files=["res://.godot/imported/idle.png-2bfc905b9930f2e295e2f3b3b50ac2bc.ctex"]
 
 [params]
 
@@ -36,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
