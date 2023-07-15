@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1kpa07bfx1bj"]
+
+[ext_resource type="Texture2D" uid="uid://dn8w4tkpa33i6" path="res://Enemy/Bullet/Sprites/Bullet.png" id="1_tmgml"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fgeuj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tmgml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2noum"]
+radius = 8.0
+
+[node name="Bullet" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fgeuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2noum")
