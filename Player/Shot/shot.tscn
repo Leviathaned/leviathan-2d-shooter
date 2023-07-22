@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://qudh4pf04gwh"]
+[gd_scene load_steps=5 format=3 uid="uid://qudh4pf04gwh"]
 
 [ext_resource type="Texture2D" uid="uid://c2ql7egfk6opm" path="res://Player/Shot/Sprites/shot.png" id="1_1yeg4"]
+[ext_resource type="Script" path="res://Player/Shot/shot.gd" id="1_c2qaq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lkxiy"]
 animations = [{
@@ -18,8 +19,10 @@ radius = 9.0
 height = 18.0
 
 [node name="Shot" type="Area2D"]
+script = ExtResource("1_c2qaq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_lkxiy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
