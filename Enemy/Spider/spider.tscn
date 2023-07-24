@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8ymb8cb7kukg"]
+[gd_scene load_steps=5 format=3 uid="uid://c8ymb8cb7kukg"]
 
+[ext_resource type="Script" path="res://Enemy/Spider/spider.gd" id="1_qcasr"]
 [ext_resource type="Texture2D" uid="uid://dw3m7r6mm2bq" path="res://Enemy/Spider/Spider.png" id="1_yqd6d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w8dw3"]
@@ -17,7 +18,10 @@ animations = [{
 radius = 8.78637
 height = 28.9873
 
-[node name="Spider" type="Area2D"]
+[node name="Spider" type="Area2D" groups=["mobs"]]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_qcasr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)

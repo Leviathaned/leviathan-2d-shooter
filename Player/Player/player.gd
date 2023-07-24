@@ -3,6 +3,7 @@ signal hit
 
 @export var speed = 200
 @export var fire_rate = 0.2
+@export var bullet_damage = 2
 @export var shot : PackedScene
 
 var screen_size
@@ -53,5 +54,6 @@ func start(pos):
 func shoot():
 		var b = shot.instantiate()
 		get_tree().root.add_child(b)
+		b.damage = bullet_damage
 		b.transform = $Marker2D.global_transform
 		$FireRateTimer.start(fire_rate)
