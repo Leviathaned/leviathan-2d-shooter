@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://biosan32bo8qi"]
+
+[ext_resource type="Script" path="res://Player/Player/player.gd" id="1_wxc7x"]
+[ext_resource type="PackedScene" uid="uid://qudh4pf04gwh" path="res://Player/Shot/shot.tscn" id="2_aw4my"]
+[ext_resource type="Texture2D" uid="uid://ogvyaqni6heo" path="res://Player/Player/Sprites/idle.png" id="2_hkmjb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwx3o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hkmjb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r4gmy"]
+radius = 33.0
+height = 90.0
+
+[node name="Player" type="Area2D"]
+position = Vector2(132, 317)
+script = ExtResource("1_wxc7x")
+fire_rate = 0.1
+shot = ExtResource("2_aw4my")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_bwx3o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_r4gmy")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(22, 0)

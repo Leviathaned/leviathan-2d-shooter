@@ -2,6 +2,7 @@ extends Area2D
 signal hit
 
 @export var speed = 200
+@export var fire_rate = 0.2
 @export var shot : PackedScene
 
 var screen_size
@@ -34,7 +35,7 @@ func _process(delta):
 	position.y = clamp(position.y, 0, screen_size.y)
 	
 	#when player fires bullets
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and $FireRateTimer.is_stopped():
 		shoot()
 
 func _on_body_entered(body):
@@ -53,4 +54,4 @@ func shoot():
 		var b = shot.instantiate()
 		get_tree().root.add_child(b)
 		b.transform = $Marker2D.global_transform
-		
+		$FireRateTimer.start(fire_rate)
