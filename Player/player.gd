@@ -12,6 +12,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#facing the bullet
+	look_at(get_global_mouse_position())
+	
 	#handles player movement
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
