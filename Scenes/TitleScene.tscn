@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://btox0ildhtfdr"]
+
+[ext_resource type="Script" path="res://Scenes/TitleScene.gd" id="1_ctred"]
+[ext_resource type="Script" path="res://Scenes/Settings Button Path.gd" id="2_fh1ss"]
+
+[sub_resource type="Curve2D" id="Curve2D_1p2e5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 0)
+}
+point_count = 2
+
+[node name="Title Scene" type="Node2D"]
+script = ExtResource("1_ctred")
+
+[node name="Title Buttons" type="MarginContainer" parent="."]
+offset_left = -147.0
+offset_top = 24.0
+offset_right = -107.0
+offset_bottom = 64.0
+
+[node name="Button Paths" type="Path2D" parent="Title Buttons"]
+curve = SubResource("Curve2D_1p2e5")
+script = ExtResource("2_fh1ss")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Title Buttons/Button Paths"]
+loop = false
+
+[node name="Label" type="Label" parent="Title Buttons/Button Paths/PathFollow2D"]
+offset_left = -10.0
+offset_top = 120.0
+offset_right = 31.0
+offset_bottom = 146.0
+text = "TITLE LABEL"
+
+[node name="Start Button" type="Button" parent="Title Buttons/Button Paths/PathFollow2D"]
+offset_left = -30.0
+offset_top = 400.0
+offset_right = 66.0
+offset_bottom = 431.0
+text = "Start Game"
+
+[node name="Settings Button" type="Button" parent="Title Buttons/Button Paths/PathFollow2D"]
+offset_top = 470.0
+offset_right = 96.0
+offset_bottom = 501.0
+text = "Settings"
+
+[node name="Quit Button" type="Button" parent="Title Buttons/Button Paths/PathFollow2D"]
+offset_left = 30.0
+offset_top = 540.0
+offset_right = 126.0
+offset_bottom = 571.0
+text = "Quit Game"
+
+[connection signal="pressed" from="Title Buttons/Button Paths/PathFollow2D/Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Title Buttons/Button Paths/PathFollow2D/Quit Button" to="." method="_on_quit_button_pressed"]
