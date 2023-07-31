@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="2d shooter"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="res://Scenes/TitleScene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
 mouse_cursor/custom_image="res://GUI/Reticle/Sprites/reticle.png"
+
 
 [editor]
 
