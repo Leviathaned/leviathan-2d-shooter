@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ogvyaqni6heo"
-path="res://.godot/imported/idle.png-b7c890936043e747d073e279b1f5425c.ctex"
+uid="uid://c8y2hwosnly8a"
+path="res://.godot/imported/reticle.png-2268e858770a41535b611c3d4002ebc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Ship/Sprites/idle.png"
-dest_files=["res://.godot/imported/idle.png-b7c890936043e747d073e279b1f5425c.ctex"]
+source_file="res://GUI/Reticle/Sprites/reticle.png"
+dest_files=["res://.godot/imported/reticle.png-2268e858770a41535b611c3d4002ebc8.ctex"]
 
 [params]
 
