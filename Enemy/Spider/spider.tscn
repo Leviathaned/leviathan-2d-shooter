@@ -19,6 +19,7 @@ radius = 8.78637
 height = 28.9873
 
 [node name="Spider" type="Area2D" groups=["mobs"]]
+process_mode = 1
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_qcasr")

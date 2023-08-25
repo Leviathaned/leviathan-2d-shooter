@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var health = 10
+@export var sword_damage = 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,9 +12,7 @@ func _ready():
 func _process(delta):
 	pass
 
-# run this function to make the enemy take damage
-func take_damage(damage):
-	print("Enemy took " + str(damage) + " damage!")
-	health -= damage
-	if health <= 0:
-		queue_free()
+func _on_area_entered(area):
+	print("entering an area!")
+	if area.is_in_group("mobs"):
+		area.take_damage(sword_damage)

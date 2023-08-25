@@ -1,35 +1,90 @@
-[gd_scene load_steps=6 format=3 uid="uid://biosan32bo8qi"]
+[gd_scene load_steps=15 format=3 uid="uid://biosan32bo8qi"]
 
 [ext_resource type="Script" path="res://Player/Player/player.gd" id="1_wxc7x"]
 [ext_resource type="PackedScene" uid="uid://qudh4pf04gwh" path="res://Player/Shot/shot.tscn" id="2_aw4my"]
-[ext_resource type="Texture2D" uid="uid://ogvyaqni6heo" path="res://Player/Player/Sprites/idle.png" id="2_hkmjb"]
+[ext_resource type="Texture2D" uid="uid://bwlh78eb25i50" path="res://Player/Player/Sprites/Swinging/slashing0000.png" id="3_xpiff"]
+[ext_resource type="Texture2D" uid="uid://ba71fhk26fmnr" path="res://Player/Player/Sprites/Swinging/slashing0001.png" id="4_35v3x"]
+[ext_resource type="Texture2D" uid="uid://c4p8tbk3qmorh" path="res://Player/Player/Sprites/Swinging/slashing0002.png" id="5_th44a"]
+[ext_resource type="Texture2D" uid="uid://xcddh4tce4gc" path="res://Player/Player/Sprites/Swinging/slashing0003.png" id="6_0lpef"]
+[ext_resource type="Texture2D" uid="uid://c8q0sv1utw04x" path="res://Player/Player/Sprites/Swinging/slashing0004.png" id="7_qqg7i"]
+[ext_resource type="Texture2D" uid="uid://by1et0lvnl00t" path="res://Player/Player/Sprites/Swinging/slashing0005.png" id="8_0seoe"]
+[ext_resource type="Script" path="res://Player/Player/SwordHitbox.gd" id="9_inl8o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bwx3o"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hkmjb")
+"texture": ExtResource("3_xpiff")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle sword",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_35v3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_th44a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0lpef")
+}],
+"loop": false,
+"name": &"swing_ltr",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qqg7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0seoe")
+}],
+"loop": false,
+"name": &"swing_rtl",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r4gmy"]
 radius = 33.0
 height = 90.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8tgme"]
+radius = 22.0
+height = 168.0
+
+[sub_resource type="GDScript" id="GDScript_4brt0"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+	
+
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lm4kn"]
+
 [node name="Player" type="Area2D"]
+process_mode = 1
 position = Vector2(132, 317)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_wxc7x")
 fire_rate = 0.1
 shot = ExtResource("2_aw4my")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_bwx3o")
+animation = &"idle sword"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("CapsuleShape2D_r4gmy")
 
@@ -39,3 +94,24 @@ one_shot = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(22, 0)
+
+[node name="Sword" type="Area2D" parent="." groups=["sword"]]
+script = ExtResource("9_inl8o")
+
+[node name="SwingLTRHitbox" type="CollisionShape2D" parent="Sword"]
+position = Vector2(62, -8)
+rotation = -0.213268
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_8tgme")
+disabled = true
+script = SubResource("GDScript_4brt0")
+
+[node name="SwingRTLHitbox" type="CollisionShape2D" parent="Sword"]
+position = Vector2(60, 4)
+rotation = 0.104726
+scale = Vector2(2.61601, 5.203)
+shape = SubResource("CapsuleShape2D_lm4kn")
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="player_animation_finished"]
+[connection signal="area_entered" from="Sword" to="Sword" method="_on_area_entered"]

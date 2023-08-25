@@ -19,6 +19,7 @@ radius = 9.0
 height = 18.0
 
 [node name="Shot" type="Area2D"]
+process_mode = 1
 script = ExtResource("1_c2qaq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
