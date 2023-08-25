@@ -1,7 +1,7 @@
 extends Area2D
 signal hit
 
-@export var speed = 200
+@export var speed = 300
 @export var fire_rate = 0.2
 @export var bullet_damage = 2
 @export var shot : PackedScene
@@ -22,40 +22,36 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#facing the bullet
-	look_at(get_global_mouse_position())
-	
 	#handles player movement
-	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-		
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
-	
-	#switching between stances
-	if Input.is_action_just_pressed("switch_stance"):
-		switch_stance()
-		
-	#all gun stance actions
-	if stance == 0:
-		#when player fires bullets
-		if Input.is_action_pressed("shoot") and $FireRateTimer.is_stopped():
-			shoot()
+	if actionable == true:
+		var velocity = Vector2.ZERO
+		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = input_direction * speed
 			
-	#all sword stance actions
-	if stance == 1:
-		if Input.is_action_just_pressed("slash"):
-			slash()
+		if velocity.length() > 0:
+			velocity = velocity.normalized() * speed
+			
+		position += velocity * delta
+		position.x = clamp(position.x, 0, screen_size.x)
+		position.y = clamp(position.y, 0, screen_size.y)
+	
+		#switching between stances
+		if Input.is_action_just_pressed("switch_stance"):
+			switch_stance()
+		
+		#all gun stance actions
+		if stance == 0:
+			#when player fires bullets
+			look_at(get_global_mouse_position())
+			if Input.is_action_pressed("shoot") and $FireRateTimer.is_stopped():
+				shoot()
+				
+		#all sword stance actions
+		if stance == 1:
+			if velocity != Vector2.ZERO:
+				rotation = atan2(velocity.y, velocity.x)
+			if Input.is_action_just_pressed("slash"):
+				slash()
 
 func _on_body_entered(body):
 	hide()
@@ -86,6 +82,7 @@ func slash():
 	if actionable == true:
 		$Sword/SwingLTRHitbox.disabled = false
 		$AnimatedSprite2D.play("swing_ltr")
+		look_at(get_global_mouse_position())
 	else:
 		queued_action = "slash"
 	actionable = false
@@ -105,8 +102,10 @@ func player_animation_finished():
 			if $AnimatedSprite2D.animation == "swing_ltr":
 				$AnimatedSprite2D.play("swing_rtl")
 				$Sword/SwingRTLHitbox.disabled = false
+				look_at(get_global_mouse_position())
 			else:
 				$AnimatedSprite2D.play("swing_ltr")
 				$Sword/SwingLTRHitbox.disabled = false
+				look_at(get_global_mouse_position())
 			queued_action = "idle"
 
