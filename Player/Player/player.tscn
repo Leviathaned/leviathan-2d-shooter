@@ -15,6 +15,17 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_xpiff")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"dash",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xpiff")
 }],
 "loop": true,
 "name": &"idle sword",
@@ -79,10 +90,12 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_wxc7x")
 fire_rate = 0.1
 shot = ExtResource("2_aw4my")
+sword_swing_push = 50
+dash_speed = 750
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bwx3o")
-animation = &"idle sword"
+animation = &"dash"
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)

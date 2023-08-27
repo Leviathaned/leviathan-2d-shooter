@@ -5,12 +5,17 @@ signal hit
 @export var fire_rate = 0.2
 @export var bullet_damage = 2
 @export var shot : PackedScene
+@export var sword_swing_push = 200
+@export var dash_speed = 500
+@export var dash_recovery_speed = 100
 
 var screen_size
 # stance represents gun stance or sword stance. 0 is gun stance, 1 is sword stance.
 var stance = 0
 # this variable represents whether the player can currently take an action (swinging, shooting)
 var actionable = true
+
+var dash_direction
 
 var state = "idle"
 var queued_action = "idle"
@@ -38,6 +43,14 @@ func _process(delta):
 		#switching between stances
 		if Input.is_action_just_pressed("switch_stance"):
 			switch_stance()
+			
+		#dash action
+		if Input.is_action_just_pressed("dash"):
+			dash_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+			if dash_direction:
+				$AnimatedSprite2D.play("dash")
+				actionable = false
+				state = "dash"
 		
 		#all gun stance actions
 		if stance == 0:
@@ -50,8 +63,27 @@ func _process(delta):
 		if stance == 1:
 			if velocity != Vector2.ZERO:
 				rotation = atan2(velocity.y, velocity.x)
-			if Input.is_action_just_pressed("slash"):
-				slash()
+				
+	if state == "dash":
+		var dash_velocity = Vector2.ZERO
+		dash_velocity = dash_direction * dash_speed
+	
+		position += dash_velocity * delta
+		position.x = clamp(position.x, 0, screen_size.x)
+		position.y = clamp(position.y, 0, screen_size.y)
+		
+	if state == "recover":
+		var dash_velocity = Vector2.ZERO
+		dash_velocity = dash_direction * dash_recovery_speed
+	
+		position += dash_velocity * delta
+		position.x = clamp(position.x, 0, screen_size.x)
+		position.y = clamp(position.y, 0, screen_size.y)
+
+	#queueing sword actions
+	if stance == 1 and Input.is_action_just_pressed("slash"):
+		slash()
+		
 
 func _on_body_entered(body):
 	hide()
@@ -80,13 +112,26 @@ func shoot():
 		
 func slash():
 	if actionable == true:
-		$Sword/SwingLTRHitbox.disabled = false
-		$AnimatedSprite2D.play("swing_ltr")
-		look_at(get_global_mouse_position())
+		slash_action(0)
 	else:
 		queued_action = "slash"
 	actionable = false
 	
+	## The slash action handles the actual slash. slash_direction is set to 0 for left to right, and 1 for right to left
+func slash_action(slash_direction):
+	if slash_direction == 0:
+		$AnimatedSprite2D.play("swing_ltr")
+		$Sword/SwingLTRHitbox.disabled = false
+		
+	if slash_direction == 1:
+		$AnimatedSprite2D.play("swing_rtl")
+		$Sword/SwingRTLHitbox.disabled = false
+		
+	look_at(get_global_mouse_position())
+	var sword_velocity = transform.x * sword_swing_push
+	
+	position += sword_velocity
+
 func disable_swordboxes():
 	$Sword/SwingLTRHitbox.disabled = true
 	$Sword/SwingRTLHitbox.disabled = true
@@ -94,18 +139,23 @@ func disable_swordboxes():
 
 func player_animation_finished():
 	disable_swordboxes()
+	#TODO: swap these out for gun sprites
+	print("animation finished")
+	if stance == 0:
+		if queued_action == "idle":
+			$AnimatedSprite2D.play("idle sword")
+			actionable = true
+			state = "idle"
+	
 	if stance == 1:
 		if queued_action == "idle":
 			$AnimatedSprite2D.play("idle sword")
 			actionable = true
+			state = "idle"
 		if queued_action == "slash":
 			if $AnimatedSprite2D.animation == "swing_ltr":
-				$AnimatedSprite2D.play("swing_rtl")
-				$Sword/SwingRTLHitbox.disabled = false
-				look_at(get_global_mouse_position())
+				slash_action(1)
 			else:
-				$AnimatedSprite2D.play("swing_ltr")
-				$Sword/SwingLTRHitbox.disabled = false
-				look_at(get_global_mouse_position())
+				slash_action(0)
 			queued_action = "idle"
 
