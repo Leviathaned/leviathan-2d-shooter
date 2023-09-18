@@ -2,6 +2,9 @@ extends Area2D
 
 @export var damage = 0
 
+var prepare_damage = false
+var mob = null
+
 var speed = 3000
 
 func _physics_process(delta):
@@ -13,10 +16,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if prepare_damage:
+		mob.take_damage(damage)
+		queue_free()
+	
 
 func _on_area_entered(area):
 	if area.is_in_group("mobs"):
-		area.take_damage(damage)
+		mob = area
+		prepare_damage = true
+	
+	if area.is_in_group("bullet shield"):
 		queue_free()
+		
 	

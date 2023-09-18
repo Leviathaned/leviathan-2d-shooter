@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba71fhk26fmnr"
-path="res://.godot/imported/slashing0001.png-5200abbc6abdd953018bf2d0ea6caa90.ctex"
+uid="uid://c3vle58ynokiu"
+path="res://.godot/imported/clanking0020.png-32a5cbb97b7a3e6d362030faa55b7041.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Player/Sprites/Swinging/slashing0001.png"
-dest_files=["res://.godot/imported/slashing0001.png-5200abbc6abdd953018bf2d0ea6caa90.ctex"]
+source_file="res://Player/Player/Sprites/Swinging/clanking/clanking0020.png"
+dest_files=["res://.godot/imported/clanking0020.png-32a5cbb97b7a3e6d362030faa55b7041.ctex"]
 
 [params]
 

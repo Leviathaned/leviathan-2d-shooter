@@ -1,31 +1,78 @@
-[gd_scene load_steps=15 format=3 uid="uid://biosan32bo8qi"]
+[gd_scene load_steps=27 format=3 uid="uid://biosan32bo8qi"]
 
 [ext_resource type="Script" path="res://Player/Player/player.gd" id="1_wxc7x"]
 [ext_resource type="PackedScene" uid="uid://qudh4pf04gwh" path="res://Player/Shot/shot.tscn" id="2_aw4my"]
-[ext_resource type="Texture2D" uid="uid://bwlh78eb25i50" path="res://Player/Player/Sprites/Swinging/slashing0000.png" id="3_xpiff"]
-[ext_resource type="Texture2D" uid="uid://ba71fhk26fmnr" path="res://Player/Player/Sprites/Swinging/slashing0001.png" id="4_35v3x"]
-[ext_resource type="Texture2D" uid="uid://c4p8tbk3qmorh" path="res://Player/Player/Sprites/Swinging/slashing0002.png" id="5_th44a"]
-[ext_resource type="Texture2D" uid="uid://xcddh4tce4gc" path="res://Player/Player/Sprites/Swinging/slashing0003.png" id="6_0lpef"]
-[ext_resource type="Texture2D" uid="uid://c8q0sv1utw04x" path="res://Player/Player/Sprites/Swinging/slashing0004.png" id="7_qqg7i"]
-[ext_resource type="Texture2D" uid="uid://by1et0lvnl00t" path="res://Player/Player/Sprites/Swinging/slashing0005.png" id="8_0seoe"]
+[ext_resource type="Texture2D" uid="uid://bwlh78eb25i50" path="res://Player/Player/Sprites/Swinging/Slashing/slashing0000.png" id="3_dawt7"]
+[ext_resource type="Texture2D" uid="uid://6jnxwdbyb30p" path="res://Player/Player/Sprites/Swinging/DashEndSlash/dash_end_slash0009.png" id="4_dk1rm"]
+[ext_resource type="Texture2D" uid="uid://duykqlquk2neg" path="res://Player/Player/Sprites/Swinging/DashEndSlash/dash_end_slash0010.png" id="5_k05dd"]
+[ext_resource type="Texture2D" uid="uid://dyiq882di0cf5" path="res://Player/Player/Sprites/Swinging/DashEndSlash/dash_end_slash0011.png" id="6_jrtu5"]
+[ext_resource type="Texture2D" uid="uid://cxijmke7kkk66" path="res://Player/Player/Sprites/Swinging/DashEndSlash/dash_end_slash0012.png" id="7_1ssew"]
+[ext_resource type="Texture2D" uid="uid://cx5xfg5h356vy" path="res://Player/Player/Sprites/Swinging/DashEndSlash/dash_end_slash0013.png" id="8_sxhg7"]
+[ext_resource type="Texture2D" uid="uid://c6c7s4bsjeyi1" path="res://Player/Player/Sprites/Swinging/DashEndSlash/dash_end_slash0014.png" id="9_0sifi"]
 [ext_resource type="Script" path="res://Player/Player/SwordHitbox.gd" id="9_inl8o"]
+[ext_resource type="Texture2D" uid="uid://ba71fhk26fmnr" path="res://Player/Player/Sprites/Swinging/Slashing/slashing0001.png" id="10_sxlvo"]
+[ext_resource type="Texture2D" uid="uid://c4p8tbk3qmorh" path="res://Player/Player/Sprites/Swinging/Slashing/slashing0002.png" id="11_6py0k"]
+[ext_resource type="Texture2D" uid="uid://xcddh4tce4gc" path="res://Player/Player/Sprites/Swinging/Slashing/slashing0003.png" id="12_nxsfg"]
+[ext_resource type="Texture2D" uid="uid://c8q0sv1utw04x" path="res://Player/Player/Sprites/Swinging/Slashing/slashing0004.png" id="13_hikh1"]
+[ext_resource type="Texture2D" uid="uid://by1et0lvnl00t" path="res://Player/Player/Sprites/Swinging/Slashing/slashing0005.png" id="14_m875p"]
+[ext_resource type="Texture2D" uid="uid://dyor34qfcv4r4" path="res://Player/Player/Sprites/Swinging/clanking/clanking0017.png" id="15_try1d"]
+[ext_resource type="Texture2D" uid="uid://dum83wgcpsiqc" path="res://Player/Player/Sprites/Swinging/clanking/clanking0018.png" id="16_gxewb"]
+[ext_resource type="Texture2D" uid="uid://b2wfoo54qw14y" path="res://Player/Player/Sprites/Swinging/clanking/clanking0019.png" id="17_855ps"]
+[ext_resource type="Texture2D" uid="uid://c3vle58ynokiu" path="res://Player/Player/Sprites/Swinging/clanking/clanking0020.png" id="18_54yir"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bwx3o"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_xpiff")
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dawt7")
 }, {
 "duration": 1.0,
 "texture": null
 }],
 "loop": false,
 "name": &"dash",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dawt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dawt7")
+}],
+"loop": false,
+"name": &"dash recovery",
 "speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_xpiff")
+"texture": ExtResource("4_dk1rm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k05dd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jrtu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1ssew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sxhg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0sifi")
+}],
+"loop": false,
+"name": &"dash swing",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dawt7")
 }],
 "loop": true,
 "name": &"idle sword",
@@ -33,13 +80,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_35v3x")
+"texture": ExtResource("10_sxlvo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_th44a")
+"texture": ExtResource("11_6py0k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_0lpef")
+"texture": ExtResource("12_nxsfg")
 }],
 "loop": false,
 "name": &"swing_ltr",
@@ -47,13 +94,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_qqg7i")
+"texture": ExtResource("13_hikh1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_0seoe")
+"texture": ExtResource("14_m875p")
 }],
 "loop": false,
 "name": &"swing_rtl",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_try1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gxewb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_855ps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_54yir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_54yir")
+}],
+"loop": false,
+"name": &"sword clank",
 "speed": 10.0
 }]
 
@@ -65,23 +132,19 @@ height = 90.0
 radius = 22.0
 height = 168.0
 
-[sub_resource type="GDScript" id="GDScript_4brt0"]
-script/source = "extends CollisionShape2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-
-"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lm4kn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4fi2"]
+radius = 18.8528
+height = 72.15
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qsdri"]
+radius = 25.9386
+height = 183.896
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gqw1j"]
+radius = 26.6688
+height = 174.098
 
 [node name="Player" type="Area2D"]
 process_mode = 1
@@ -91,11 +154,13 @@ script = ExtResource("1_wxc7x")
 fire_rate = 0.1
 shot = ExtResource("2_aw4my")
 sword_swing_push = 50
-dash_speed = 750
+dash_speed = 1000
+dash_swing_speed = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bwx3o")
-animation = &"dash"
+animation = &"dash swing"
+frame = 3
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -116,7 +181,6 @@ position = Vector2(62, -8)
 rotation = -0.213268
 shape = SubResource("CapsuleShape2D_8tgme")
 disabled = true
-script = SubResource("GDScript_4brt0")
 
 [node name="SwingRTLHitbox" type="CollisionShape2D" parent="Sword"]
 position = Vector2(60, 4)
@@ -125,5 +189,21 @@ scale = Vector2(2.61601, 5.203)
 shape = SubResource("CapsuleShape2D_lm4kn")
 disabled = true
 
+[node name="DashSwing1" type="CollisionShape2D" parent="Sword"]
+position = Vector2(-18, -72)
+rotation = 1.07687
+shape = SubResource("CapsuleShape2D_h4fi2")
+
+[node name="DashSwing2" type="CollisionShape2D" parent="Sword"]
+position = Vector2(50, -6)
+rotation = 0.0593412
+shape = SubResource("CapsuleShape2D_qsdri")
+
+[node name="DashSwing3" type="CollisionShape2D" parent="Sword"]
+position = Vector2(-32, 50)
+rotation = -1.37706
+shape = SubResource("CapsuleShape2D_gqw1j")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="player_animation_finished"]
 [connection signal="area_entered" from="Sword" to="Sword" method="_on_area_entered"]
+[connection signal="deflected" from="Sword" to="." method="_on_sword_deflected"]

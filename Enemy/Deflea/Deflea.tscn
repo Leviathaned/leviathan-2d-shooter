@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://k38duq5wnm61"]
+
+[ext_resource type="Texture2D" uid="uid://cxy2rghy18jrl" path="res://Enemy/Deflea/Sprites/Deflea.png" id="1_88rln"]
+[ext_resource type="Script" path="res://Enemy/Deflea/Deflea.gd" id="1_cxv2g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vu2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_88rln")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hwmbl"]
+radius = 92.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5216s"]
+size = Vector2(212, 220)
+
+[node name="Deflea" type="Area2D" groups=["mobs"]]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_cxv2g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1vu2b")
+animation = &"idle"
+
+[node name="Body2" type="CollisionShape2D" parent="."]
+position = Vector2(4, -8)
+shape = SubResource("CircleShape2D_hwmbl")
+
+[node name="Shield" type="Area2D" parent="." groups=["bullet shield"]]
+
+[node name="Shield" type="CollisionShape2D" parent="Shield"]
+position = Vector2(2, -6)
+shape = SubResource("RectangleShape2D_5216s")

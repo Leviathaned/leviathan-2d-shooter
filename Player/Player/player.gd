@@ -7,6 +7,7 @@ signal hit
 @export var shot : PackedScene
 @export var sword_swing_push = 200
 @export var dash_speed = 500
+@export var dash_swing_speed = 350
 @export var dash_recovery_speed = 100
 
 var screen_size
@@ -64,15 +65,21 @@ func _process(delta):
 			if velocity != Vector2.ZERO:
 				rotation = atan2(velocity.y, velocity.x)
 				
-	if state == "dash":
+	if state == "dash" or state == "dash swing":
+		var mod_dash_speed = dash_speed
+		if state == "dash swing":
+			mod_dash_speed = dash_swing_speed
+		
 		var dash_velocity = Vector2.ZERO
-		dash_velocity = dash_direction * dash_speed
-	
+		dash_velocity = dash_direction * mod_dash_speed
+		
+		
+		
 		position += dash_velocity * delta
 		position.x = clamp(position.x, 0, screen_size.x)
 		position.y = clamp(position.y, 0, screen_size.y)
 		
-	if state == "recover":
+	if state == "dash_recovery":
 		var dash_velocity = Vector2.ZERO
 		dash_velocity = dash_direction * dash_recovery_speed
 	
@@ -140,14 +147,36 @@ func disable_swordboxes():
 func player_animation_finished():
 	disable_swordboxes()
 	#TODO: swap these out for gun sprites
-	print("animation finished")
-	if stance == 0:
+	if state == "dash":
+		if queued_action == "slash":
+			look_at(get_global_mouse_position())
+			$AnimatedSprite2D.play("dash swing")
+			state = "dash swing"
+			queued_action = "idle"
+		else:
+			$AnimatedSprite2D.play("dash recovery")
+			state = "dash_recovery"
+			queued_action = "idle"
+			
+	elif state == "dash swing":
+		$AnimatedSprite2D.play("dash recovery")
+		state = "dash_recovery"
+		queued_action = "idle"
+		
+	elif state == "dash_recovery":
+		print("recovery finished!")
+		$AnimatedSprite2D.play("idle sword")
+		state = "idle"
+		queued_action = "idle"
+		actionable = true
+	
+	elif stance == 0:
 		if queued_action == "idle":
 			$AnimatedSprite2D.play("idle sword")
 			actionable = true
 			state = "idle"
 	
-	if stance == 1:
+	elif stance == 1:
 		if queued_action == "idle":
 			$AnimatedSprite2D.play("idle sword")
 			actionable = true
@@ -159,3 +188,15 @@ func player_animation_finished():
 				slash_action(0)
 			queued_action = "idle"
 
+#signals
+func _on_sword_deflected():
+	print("sword clank!")
+	
+	var sword_velocity = transform.x * -sword_swing_push
+	
+	position += sword_velocity
+	
+	$AnimatedSprite2D.play("sword clank")
+	state = "sword deflected"
+	queued_action = "idle"
+	

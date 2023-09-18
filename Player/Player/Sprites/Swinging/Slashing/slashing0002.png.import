@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4p8tbk3qmorh"
-path="res://.godot/imported/slashing0002.png-6861b037639613ac4b95d004c0237c3b.ctex"
+path="res://.godot/imported/slashing0002.png-ceff9315726180cc6af770f2cf8fac8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Player/Sprites/Swinging/slashing0002.png"
-dest_files=["res://.godot/imported/slashing0002.png-6861b037639613ac4b95d004c0237c3b.ctex"]
+source_file="res://Player/Player/Sprites/Swinging/Slashing/slashing0002.png"
+dest_files=["res://.godot/imported/slashing0002.png-ceff9315726180cc6af770f2cf8fac8f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xcddh4tce4gc"
-path="res://.godot/imported/slashing0003.png-f1584a6e6b145ee4bbe2b8bd5fd266ad.ctex"
+uid="uid://dkwwhow32j3sy"
+path="res://.godot/imported/bufflin idle.png-3790da04c4bdbac46bbcbd5bbc8c1412.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Player/Sprites/Swinging/slashing0003.png"
-dest_files=["res://.godot/imported/slashing0003.png-f1584a6e6b145ee4bbe2b8bd5fd266ad.ctex"]
+source_file="res://Enemy/Bufflin/Sprites/bufflin idle.png"
+dest_files=["res://.godot/imported/bufflin idle.png-3790da04c4bdbac46bbcbd5bbc8c1412.ctex"]
 
 [params]
 
